@@ -20,8 +20,9 @@ app.delete('/delete', function (req, res) {
     "desc": (req.query.desc),
   }
   const new_file = todoList.filter((obj) => obj.id !== req.params);
-  const idx = todoList.findIndex(({ id }) => id == 1);
+  const idx = todoList.findIndex(({ id }) => id == "01");
   todoList.splice(idx, 1); JSON.stringify(todoList, null, 2);
+  fs.writeFileSync('./todoList.json', JSON.stringify(todoList, null, 2));
   res.json(todoList);
 
 })
