@@ -19,9 +19,11 @@ app.delete('/delete', function (req, res) {
     "id": (req.query.id),
     "desc": (req.query.desc),
   }
-  //todoList.deleteVar = todoList.deleteVar.filter((obj) => obj.id !== req.params)
-  new_json = JSON.stringify(toDolist, null, 2)
-  res.json(new_json);
+  const new_file = todoList.filter((obj) => obj.id !== req.params);
+  const idx = todoList.findIndex(({ id }) => id == 1);
+  todoList.splice(idx, 1); JSON.stringify(todoList, null, 2);
+  res.json(todoList);
+
 })
 
 app.listen(port, () => {
